@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const Product = require("./db/Schema");
+const Product = require('../db/Schema')
 
 router.post("/v1/product/new", async (req, res) => {
   try {

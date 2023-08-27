@@ -4,7 +4,8 @@
   "description": "This is a basic CRUD Restful API",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "run": "node app.js",
+    "dev":"nodemon app.js"
   },
   "author": "Harsh Vardhan Pandey",
   "license": "MIT",
