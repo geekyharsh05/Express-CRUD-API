@@ -30,8 +30,8 @@ This is a simple CRUD API built using Express.js and MongoDB. It allows you to p
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/express-mongodb-crud.git
-   cd ExpressCRUDApp
+   git clone git@github.com:geekyharsh05/Express-CRUD-API.git
+   cd Express-CRUD-API
    ```
 
 2. Install the dependencies:
