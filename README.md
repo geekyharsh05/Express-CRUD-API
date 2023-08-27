@@ -36,7 +36,7 @@ This is a simple CRUD API built using Express.js and MongoDB. It allows you to p
 
 2. Install the dependencies:
 
-    ```
+    ```bash
     npm install
     ```
 
@@ -46,7 +46,7 @@ This is a simple CRUD API built using Express.js and MongoDB. It allows you to p
 
 1. Start the server:
 
-    ```
+    ```bash
     npm start
     ```
 
@@ -68,5 +68,3 @@ Contributions are welcome! If you find any bugs or want to add new features, fee
 3. Commit your changes (`git commit -m 'Add some feature'`).
 4. Push to the branch (`git push origin feature/your-feature-name`).
 5. Open a pull request.
-
-
