@@ -40,7 +40,7 @@ This is a simple CRUD API built using Express.js and MongoDB. It allows you to p
     npm install
     ```
 
-3. Set up your MongoDB connection by modifying the mongoose.connect line in app.js.
+3. Set up your MongoDB connection by modifying the mongoose.connect line in `db/connection.js`.
 
 ## Usage
 
