@@ -1,12 +1,4 @@
 const Product = require("../db/Schema");
-
-const handleErrorResponse = (res, statusCode, message) => {
-  res.status(statusCode).json({
-    success: false,
-    error: message,
-  });
-};
-
 const getProducts = async (req, res) => {
   try {
     const products = await Product.find();
@@ -16,40 +8,55 @@ const getProducts = async (req, res) => {
       products,
     });
   } catch (error) {
-    handleErrorResponse(res, 500, error.message);
+    res.status(500).json({
+      success: false,
+      error: error.message,
+    });
   }
 };
 const postProduct = async (req, res) => {
   try {
     const product = await Product.create(req.body);
+
     res.status(201).json({
       success: true,
       product,
     });
   } catch (error) {
-    handleErrorResponse(res, 500, error.message);
+    res.status(500).json({
+      success: false,
+      error: error.message,
+    });
   }
 };
-
 const updateProduct = async (req, res) => {
   try {
-    const product = await Product.findByIdAndUpdate(req.params.id, req.body, {
+    let product = await Product.findById(req.params.id);
+
+    if (!product) {
+      return res.status(404).json({
+        success: false,
+        message: "Product not found!",
+      });
+    }
+
+    product = await Product.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
       useFindAndModify: false,
       runValidators: true,
     });
-    if (!product) {
-      return handleErrorResponse(res, 404, "Product not found!");
-    }
+
     res.status(200).json({
       success: true,
       product,
     });
   } catch (error) {
-    handleErrorResponse(res, 500, error.message);
+    res.status(500).json({
+      success: false,
+      error: error.message,
+    });
   }
 };
-
 const deleteProduct = async (req, res) => {
   try {
     const deletedProduct = await Product.findByIdAndDelete(req.params.id);
@@ -66,7 +73,10 @@ const deleteProduct = async (req, res) => {
       message: "Product is deleted successfully",
     });
   } catch (error) {
-    handleErrorResponse(res, 500, error.message);
+    res.status(500).json({
+      success: false,
+      error: error.message,
+    });
   }
 };
 module.exports = {
