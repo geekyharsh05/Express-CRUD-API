@@ -12,5 +12,5 @@ router
   .get("/v1/products", getProducts)
   .put("/v1/product/:id", updateProduct)
   .delete("/v1/product/:id", deleteProduct);
-  
+
 module.exports = router;

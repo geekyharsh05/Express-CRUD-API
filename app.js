@@ -7,9 +7,9 @@ const PORT = process.env.PORT || 4500;
 require("./db/connection");
 const router = require("./router/Routes");
 
+app.use(logReqRes);
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.json());
-app.use(logReqRes('log.txt'));
 
 app.use("/api", router);
 

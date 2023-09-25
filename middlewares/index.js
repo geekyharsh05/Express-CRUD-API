@@ -1,20 +1,21 @@
+const morgan = require("morgan");
 const fs = require("fs");
 const path = require("path");
 
-const logReqRes = (filename) => {
-  return (req, res, next) => {
-    const logData = `${Date.now()}: ${req.method}:${req.ip}: ${req.path}\n`;
-    const filePath = path.join(__dirname, filename);
+const logStream = fs.createWriteStream(path.join(__dirname, "access.log"), {
+  flags: "a"
+});
 
-    fs.promises
-      .appendFile(filePath, logData)
-      .then(() => {
-        next();
-      })
-      .catch((err) => {
-        console.error("Error appending to log file:", err);
-        next(err);
-      });
-  };
-};
+morgan.token("getTimestamp", () => {
+  return new Date().toLocaleString();
+});
+
+morgan.token("getUrlToken", (req) => {
+  return req.originalUrl || req.url;
+});
+
+const logReqRes = morgan(":getTimestamp :method :getUrlToken :response-time ms", {
+  stream: logStream
+});
+
 module.exports = logReqRes;
