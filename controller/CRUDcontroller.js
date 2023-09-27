@@ -30,6 +30,7 @@ export const postProduct = async (req, res) => {
     });
   }
 };
+
 export const updateProduct = async (req, res) => {
   try {
     let product = await Product.findById(req.params.id);
@@ -58,6 +59,7 @@ export const updateProduct = async (req, res) => {
     });
   }
 };
+
 export const deleteProduct = async (req, res) => {
   try {
     const deletedProduct = await Product.findByIdAndDelete(req.params.id);

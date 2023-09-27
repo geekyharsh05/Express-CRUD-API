@@ -1,16 +1,14 @@
 import express from "express";
 import bodyParser from "body-parser";
-import morgan from "morgan";
 
 const app = express();
-const PORT = process.env.PORT || 4500;
+const PORT = process.env.PORT ?? 4500;
 
 import "./db/connection.js";
 import { router } from "./router/Routes.js";
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.json());
-app.use(morgan('tiny'));
 
 app.use("/api", router);
 
