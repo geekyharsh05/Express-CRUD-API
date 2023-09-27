@@ -1,9 +1,11 @@
-const express = require("express");
-const bodyParser = require("body-parser");
+import express from "express";
+import bodyParser from "body-parser";
+
 const app = express();
-const PORT = process.env.PORT || 4500;
-require("./db/connection");
-const router = require("./router/Routes");
+const PORT = process.env.PORT ?? 4500;
+
+import "./db/connection.js";
+import { router } from "./router/Routes.js";
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.json());

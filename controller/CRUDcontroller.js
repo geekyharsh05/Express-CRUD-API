@@ -1,5 +1,6 @@
-const Product = require("../db/Schema");
-const getProducts = async (req, res) => {
+import { Product } from '../db/Schema.js';
+
+export const getProducts = async (req, res) => {
   try {
     const products = await Product.find();
 
@@ -14,7 +15,7 @@ const getProducts = async (req, res) => {
     });
   }
 };
-const postProduct = async (req, res) => {
+export const postProduct = async (req, res) => {
   try {
     const product = await Product.create(req.body);
 
@@ -29,7 +30,8 @@ const postProduct = async (req, res) => {
     });
   }
 };
-const updateProduct = async (req, res) => {
+
+export const updateProduct = async (req, res) => {
   try {
     let product = await Product.findById(req.params.id);
 
@@ -57,7 +59,8 @@ const updateProduct = async (req, res) => {
     });
   }
 };
-const deleteProduct = async (req, res) => {
+
+export const deleteProduct = async (req, res) => {
   try {
     const deletedProduct = await Product.findByIdAndDelete(req.params.id);
 
@@ -78,10 +81,4 @@ const deleteProduct = async (req, res) => {
       error: error.message,
     });
   }
-};
-module.exports = {
-  getProducts,
-  postProduct,
-  updateProduct,
-  deleteProduct,
 };
